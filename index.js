@@ -27,12 +27,12 @@ bot.on('login', () => {
     bot.chat(config.loginmessage) // message on login
     console.log(`Minecraft bot is ready!`);
 });
-// bot.on('message', msg => { 
-//  dbot.guilds.get(config.guildid).channels.get(config.chatchannelid).send({embed: {
-//    color: 3447003,
-//    description: (msg.toString()) // embed for the chat in discord
-//  }});
-//    });
+ bot.on('message', msg => { 
+  dbot.guilds.get(config.guildid).channels.get(config.chatchannelid).send({embed: {
+    color: 3447003,
+    description: (msg.toString()) // embed for the chat in discord
+  }});
+    });
 bot.on('chat', function(username, message) {
   if(!message.startsWith("!")) return;
   if(cooldown.has("active")){
@@ -91,15 +91,15 @@ bot.on('chat', function(username, message) {
 };
   }
 });
-// bot.on('playerJoined', (player) => {
-//   if (player.username !== bot.username) {
-//     bot.chat(`Hello, ${player.username}! Welcome to the server.`)
-//   }
-// })
-// bot.on('playerLeft', (player) => {
-//   if (player.username === bot.username) return
-//   bot.chat(`Bye ${player.username}`)
-// })
+ bot.on('playerJoined', (player) => {
+   if (player.username !== bot.username) {
+     bot.chat(`Hello, ${player.username}! Welcome to the server.`)
+   }
+ })
+ bot.on('playerLeft', (player) => {
+   if (player.username === bot.username) return
+   bot.chat(`Bye ${player.username}`)
+ })
 dbot.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
